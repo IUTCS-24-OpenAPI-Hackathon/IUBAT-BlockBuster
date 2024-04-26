@@ -11,7 +11,7 @@ const Placedetails = () => {
   // console.log(id);
 
   useEffect(() => {
-    fetch(`fakedb.json`)
+    fetch(`https://apurba3036.github.io/apitest/fakedb.json`)
       .then(response => response.json())
       .then(data => setfetures(data))
       .catch(error => console.error('Error fetching JSON:', error));

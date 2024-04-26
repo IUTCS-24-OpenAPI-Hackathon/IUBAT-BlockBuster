@@ -1,12 +1,44 @@
-import { useAppContext } from "../../contexts/appContext";
+import React, { useState } from 'react';
 
 const Search = () => {
-  const { location } = useAppContext();
-
-  // console.log(location);
+  const [formData, setFormData] = useState({
+    location: "",
+    radius: "",
+    filter: ""
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await fetch('http://your-api-endpoint.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
+      // Optionally, reset the form data after successful submission
+      setFormData({
+        location: "",
+        radius: "",
+        filter: ""
+      });
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   return (
@@ -19,10 +51,12 @@ const Search = () => {
           <input
             type="text"
             id="location"
+            name="location"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Dhaka"
             required
-            value={location ? location.myLocation?.address?.suburb : ""}
+            value={formData.location}
+            onChange={handleChange}
           />
           <button
             type="submit"
@@ -44,6 +78,8 @@ const Search = () => {
             id="radius"
             name="radius"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            value={formData.radius}
+            onChange={handleChange}
           >
             <option value="">None</option>
             <option value="10km">10km</option>
@@ -65,6 +101,8 @@ const Search = () => {
             id="filter"
             name="filter"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            value={formData.filter}
+            onChange={handleChange}
           >
             <option value="">None</option>
             <option value="hospital">Hospital</option>
