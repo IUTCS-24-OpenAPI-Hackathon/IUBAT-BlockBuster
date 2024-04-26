@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@fortawesome/fontawesome-free": "^6.5.2",
@@ -29,6 +30,9 @@
     "i": "^0.3.7",
     "install": "^0.13.0",
     "leaflet": "^1.9.4",
+=======
+    "axios": "^1.6.8",
+>>>>>>> 6808bce1f4545d81408727b368997d588e98cd25
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "mdb-react-ui-kit": "^7.2.0",
