@@ -1,22 +1,14 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
 
 const Fulldetails = ({ features }) => {
-  console.log(features.details);
+  const { formatted } = features.details.features[0].properties;
   // const { details } = features.details.features[0].properties;
-  const updatedDetails = features;
-  // console.log(updatedDetails)
   return (
     <div>
-      <h3 className='title'>
-
-      </h3>
-      {/* <p className='font-bold'>Address: {details.name}</p> */}
-      <div className='flex justify-center my-5'>
-
-      </div>
-
+      <h3 className="title"></h3>
+      <p className="font-bold">Address: {formatted}</p>
+      <div className="flex justify-center my-5"></div>
     </div>
-
   );
 };
 
