@@ -1,41 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import Fulldetails from './Fulldetails';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Fulldetails from "./Fulldetails";
 
 const Placedetails = () => {
-
-  const [featues, setfetures] = useState([]);
-  const [selectedFeature, setSelectedFeature] = useState(null);
+  const [features, setFeatures] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   const id = useParams().id;
-  console.log(id);
 
   useEffect(() => {
-    fetch(`https://apurba3036.github.io/apitest/fakedb.json`)
-      .then(response => response.json())
-      .then(data => setfetures(data))
-      .catch(error => console.error('Error fetching JSON:', error));
-  }, []);
+    fetch(`http://localhost:4003/api/search/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setFeatures(data);
+        setLoaded(true);
+      })
 
-  useEffect(() => {
-    // Check if featues is not empty before attempting to find the item
-    if (featues.length > 0) {
-      const find = featues.find(f => f.id === parseInt(id));
-      // console.log(find);
-      setSelectedFeature(find);
-    }
-  }, [id, featues]);
+      .catch((error) => console.error("Error fetching JSON:", error));
+  }, [id]);
 
   return (
-    <div className='py-32 text-center px-12'>
-      {selectedFeature ? (
-        <Fulldetails feature={selectedFeature} />
+    <div className="py-32 text-center px-12">
+      {loaded && features.status ? (
+        <Fulldetails features={features} />
       ) : (
         <p>Loading...</p>
       )}
     </div>
   );
-
 };
 
 export default Placedetails;

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "../../contexts/appContext";
-import NearByPlaces from "./NearByPlaces";
 import PlacesNearby from "./PlacesNearby";
 
 const Search = () => {
