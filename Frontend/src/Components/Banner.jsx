@@ -12,7 +12,7 @@ const Banner = () => {
       }}
     >
       <div className="text-white text-center">
-        <h1 className="text-5xl lg:text-6xl leading-snug font-bold mt-6">
+        <h1 className="text-5xl lg:text-6xl leading-snug font-bold ">
           Search your favorite Location{" "}
         </h1>
         <p className="text-gray-700 lg:3/5 mx-auto mt-5 font-primary">

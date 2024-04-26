@@ -79,8 +79,24 @@ module.exports.getDetails = async (req, res) => {
   );
   details = await details.json();
 
-  return res.send({
-    status: true,
-    details: details,
-  });
+  if (details.features.length > 0) {
+    let lon = details.features[0].geometry.coordinates[0];
+    let lat = details.features[0].geometry.coordinates[1];
+
+    console.log(lat, lon);
+    let weather = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${"130d0921ee7f62143f354d0641c28676"}`
+    );
+    weather = await weather.json();
+
+    return res.send({
+      status: true,
+      details: details,
+      weather: weather,
+    });
+  } else {
+    return res.send({
+      status: false,
+    });
+  }
 };

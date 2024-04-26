@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "../../contexts/appContext";
+import NearByPlaces from "./NearByPlaces";
+import PlacesNearby from "./PlacesNearby";
 
 const Search = () => {
   const { location, geo, setNearby } = useAppContext();
@@ -102,89 +104,92 @@ const Search = () => {
   };
 
   return (
-    <div className="flex justify-center items-center">
-      <form
-        className="text-center w-full"
-        onSubmit={handleSubmit}
-        autoComplete="off"
-      >
-        <label className="block mb-2 text-lg font-medium">
-          Search Your Location
-        </label>
-        <div className="w-full flex">
-          <div className="w-full">
-            <input
-              type="text"
-              id="location"
-              name="location"
-              className="w-full px-4 py-1 border-2 rounded"
-              placeholder="Dhaka"
-              required
-              value={formData.location}
-              onChange={handleLocationInput}
-              list="locations"
-            />
-            <datalist id="locations">
-              {suggestion.length > 0 &&
-                suggestion.map((s, index) => (
-                  <option key={index} value={s.formatted}>
-                    {s.formatted}
-                  </option>
-                ))}
-            </datalist>
-          </div>
-          {/* Radius Dropdown */}
-          <div className="w-full">
-            <select
-              id="radius"
-              name="radius"
-              className="w-full px-4 py-1 border-2 rounded"
-              value={formData.radius}
-              onChange={handleChange}
-            >
-              <option value="">None</option>
-              <option value="5000">5km</option>
-              <option value="10000">10km</option>
-              <option value="15000">15km</option>
-              <option value="20000">20km</option>
-              <option value="30000">30km</option>
-            </select>
-          </div>
-          <div className="w-full">
-            <select
-              id="filter"
-              name="filter"
-              className="w-full px-4 py-1 border-2 rounded"
-              value={formData.filter}
-              onChange={handleChange}
-            >
-              <option value="">None</option>
-              <option value="building.healthcare">Hospital</option>
-              <option value="catering.restaurant">Restaurant</option>
-            </select>
-          </div>
-          <div className="w-full">
-            <select
-              id="type"
-              name="type"
-              className="w-full px-4 py-1 border-2 rounded"
-              value={formData.type}
-              onChange={handleChange}
-            >
-              <option value="all">None</option>
-              <option value="city">City</option>
-              <option value="district">District</option>
-            </select>
-          </div>
-        </div>
-        <button
-          type="submit"
-          className="ml-2 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+    <>
+      <PlacesNearby />
+      <div className="flex justify-center items-center">
+        <form
+          className="text-center w-full"
+          onSubmit={handleSubmit}
+          autoComplete="off"
         >
-          Submit
-        </button>
-      </form>
-    </div>
+          <label className="block mb-2 text-lg font-medium">
+            Search Your Location
+          </label>
+          <div className="w-full flex">
+            <div className="w-full">
+              <input
+                type="text"
+                id="location"
+                name="location"
+                className="w-full px-4 py-1 border-2 rounded"
+                placeholder="Dhaka"
+                required
+                value={formData.location}
+                onChange={handleLocationInput}
+                list="locations"
+              />
+              <datalist id="locations">
+                {suggestion.length > 0 &&
+                  suggestion.map((s, index) => (
+                    <option key={index} value={s.formatted}>
+                      {s.formatted}
+                    </option>
+                  ))}
+              </datalist>
+            </div>
+            {/* Radius Dropdown */}
+            <div className="w-full">
+              <select
+                id="radius"
+                name="radius"
+                className="w-full px-4 py-1 border-2 rounded"
+                value={formData.radius}
+                onChange={handleChange}
+              >
+                <option value="">None</option>
+                <option value="5000">5km</option>
+                <option value="10000">10km</option>
+                <option value="15000">15km</option>
+                <option value="20000">20km</option>
+                <option value="30000">30km</option>
+              </select>
+            </div>
+            <div className="w-full">
+              <select
+                id="filter"
+                name="filter"
+                className="w-full px-4 py-1 border-2 rounded"
+                value={formData.filter}
+                onChange={handleChange}
+              >
+                <option value="">None</option>
+                <option value="building.healthcare">Hospital</option>
+                <option value="catering.restaurant">Restaurant</option>
+              </select>
+            </div>
+            <div className="w-full">
+              <select
+                id="type"
+                name="type"
+                className="w-full px-4 py-1 border-2 rounded"
+                value={formData.type}
+                onChange={handleChange}
+              >
+                <option value="all">None</option>
+                <option value="city">City</option>
+                <option value="district">District</option>
+              </select>
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="ml-2 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 

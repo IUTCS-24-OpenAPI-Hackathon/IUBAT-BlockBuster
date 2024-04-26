@@ -6,8 +6,7 @@ import Search from "./Search";
 const Home = () => {
   return (
     <div className="text-center">
-      Home
-      <Banner></Banner>
+       <Banner></Banner>
       <br></br>
       <Gps></Gps> <br /> <br />
       <Search></Search>
