@@ -2,6 +2,7 @@
 
 const Fulldetails = ({ features }) => {
   const { formatted } = features.details.features[0].properties;
+  console.log(features.weather);
   // const { details } = features.details.features[0].properties;
   return (
     <div>
