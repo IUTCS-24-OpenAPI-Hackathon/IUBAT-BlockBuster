@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "Dr. John Smith",
+    "image": "https://t4.ftcdn.net/jpg/03/05/41/27/360_F_305412791_XRNiWaFCREjLLpSQfj0e736foBoYXXYv.jpg",
+    "category": "Cardiology",
+    "time": "Monday to Friday, 9:00 AM - 5:00 PM",
+    "mail": "john.smith@example.com"
+  },
+  {
+    "id": 2,
+    "title": "Dr. Emily Johnson",
+    "image": "https://media.istockphoto.com/id/1346124900/photo/confident-successful-mature-doctor-at-hospital.jpg?s=612x612&w=0&k=20&c=S93n5iTDVG3_kJ9euNNUKVl9pgXTOdVQcI_oDGG-QlE=",
+    "category": "Pediatrics",
+    "time": "Tuesday, Thursday, Saturday, 10:00 AM - 3:00 PM",
+    "mail": "emily.johnson@example.com"
+  },
+  {
+    "id": 3,
+    "title": "Dr. Michael Lee",
+    "image": "https://media.istockphoto.com/id/1470505351/photo/portrait-of-a-smiling-doctor-holding-glasses-and-a-mobile-phone-at-the-office.webp?b=1&s=170667a&w=0&k=20&c=8CebFLF4PFnt9JYJznGhYoOQxcyHLVpTGVfkvEsZd2Q=",
+    "category": "Orthopedics",
+    "time": "Monday to Wednesday, Friday, 8:00 AM - 6:00 PM",
+    "mail": "michael.lee@example.com"
+  },
+  {
+    "id": 4,
+    "title": "Dr. Sarah Brown",
+    "image": "https://media.istockphoto.com/id/1203995945/photo/portrait-of-mature-male-doctor-wearing-white-coat-standing-in-hospital-corridor.jpg?s=612x612&w=0&k=20&c=Hk-dqLqHXyYa4aTqjieXNk9-HQSE8WEYUAjA1sXsy_s=",
+    "category": "Dermatology",
+    "time": "Monday to Friday, 10:00 AM - 4:00 PM",
+    "mail": "sarah.brown@example.com"
+  },
+  {
+    "id": 5,
+    "title": "Dr. David Martinez",
+    "image": "https://st2.depositphotos.com/3489481/6802/i/450/depositphotos_68024019-stock-photo-confident-male-doctor-smiling-arms.jpg",
+    "category": "Neurology",
+    "time": "Tuesday, Thursday, Friday, 9:00 AM - 5:00 PM",
+    "mail": "david.martinez@example.com"
+  },
+  {
+    "id": 6,
+    "title": "Dr. Jennifer White",
+    "image": "https://media.istockphoto.com/id/507954725/photo/never-fear-the-doctor-is-here.jpg?s=612x612&w=0&k=20&c=fPGU8TcaU-88cAwZvALWghx6fJ4j3zj4C79TKI-WRP4=",
+    "category": "Oncology",
+    "time": "Monday, Wednesday, Thursday, 10:00 AM - 6:00 PM",
+    "mail": "jennifer.white@example.com"
+  },
+  {
+    "id": 7,
+    "title": "Dr. Daniel Clark",
+    "image": "https://media.istockphoto.com/id/1308951060/photo/portrait-of-smiling-mature-male-doctor-talk-on-video-call.jpg?s=612x612&w=0&k=20&c=DTAkLIFxdcajS35taGXLfcXbRCVisOaFqau9lE0XxOw=",
+    "category": "Psychiatry",
+    "time": "Monday to Friday, 9:00 AM - 4:00 PM",
+    "mail": "daniel.clark@example.com"
+  },
+  {
+    "id": 8,
+    "title": "Dr. Laura Taylor",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ24MssHTTdpaDZaGnwqP8Nv9O7GVy6zr1Z4n1s8-PXJINMA9vWdQAWLAF6a9Icy9OHdQ&usqp=CAU",
+    "category": "Gynecology",
+    "time": "Tuesday, Thursday, Friday, 8:00 AM - 5:00 PM",
+    "mail": "laura.taylor@example.com"
+  },
+  {
+    "id": 9,
+    "title": "Dr. Christopher Adams",
+    "image": "https://media.istockphoto.com/id/1494324933/photo/portrait-of-asian-chinese-mixed-race-senior-mature-man-doctor-in-collared-business-shirt.webp?b=1&s=170667a&w=0&k=20&c=AQn0qlSIbjun7Qs0nCAnMs4pfOYGysAyL0j6KuuvhJU=",
+    "category": "ENT (Otolaryngology)",
+    "time": "Monday, Wednesday, Thursday, 9:00 AM - 6:00 PM",
+    "mail": "christopher.adams@example.com"
+  },
+  {
+    "id": 10,
+    "title": "Dr. Elizabeth Wilson",
+    "image": "https://media.istockphoto.com/id/1470505351/photo/portrait-of-a-smiling-doctor-holding-glasses-and-a-mobile-phone-at-the-office.webp?b=1&s=170667a&w=0&k=20&c=8CebFLF4PFnt9JYJznGhYoOQxcyHLVpTGVfkvEsZd2Q=",
+    "category": "Internal Medicine",
+    "time": "Monday to Friday, 8:00 AM - 5:00 PM",
+    "mail": "elizabeth.wilson@example.com"
+  }
+]
