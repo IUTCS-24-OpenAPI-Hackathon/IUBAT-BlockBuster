@@ -8,7 +8,7 @@ const Gps = () => {
     latitude: "",
     longitude: "",
   });
-  const { location, setLocation } = useAppContext();
+  const { location, setLocation, setGeo } = useAppContext();
 
   const [error, setError] = useState(null);
   const [responseMessage, setResponseMessage] = useState("");
@@ -22,6 +22,10 @@ const Gps = () => {
             longitude: position.coords.longitude,
           });
           sendLocation(position.coords.latitude, position.coords.longitude);
+          setGeo({
+            lat: position.coords.latitude,
+            lon: position.coords.longitude,
+          });
         },
         (error) => {
           setError(error.message);

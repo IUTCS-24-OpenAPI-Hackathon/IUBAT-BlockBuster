@@ -12,8 +12,6 @@ module.exports.searchLocation = async (req, res) => {
 module.exports.myLocation = async (req, res) => {
   const { lat, lon } = req.body;
 
-  console.log(lat);
-
   const response = await fetch(
     `https://nominatim.openstreetmap.org/reverse?format=json&lat=${Number(
       lat
@@ -22,48 +20,70 @@ module.exports.myLocation = async (req, res) => {
 
   const location = await response.json();
 
-  console.log(location);
-
   return res.send({
     status: true,
     myLocation: location,
   });
 };
 
+function calculateDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Radius of the earth in km
+  const dLat = ((lat2 - lat1) * Math.PI) / 180; // deg2rad below
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+  const a =
+    0.5 -
+    Math.cos(dLat) / 2 +
+    (Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      (1 - Math.cos(dLon))) /
+      2;
+
+  return R * 2 * Math.asin(Math.sqrt(a));
+}
+
 module.exports.nearbyLocations = async (req, res) => {
-  let { location, lat, lon, radius } = req.body;
+  let { location, lat, lon, radius, filter } = req.body;
 
   if (!lat) {
-    console.log(location);
-    const encodedAddress = encodeURIComponent(`${location},${"india"}`);
+    const encodedAddress = encodeURIComponent(`${location},${"dhaka"}`);
     let ans = await fetch(
       `https://nominatim.openstreetmap.org/search?q=${encodedAddress}&format=json`
     );
     ans = await ans.json();
 
-    lat = ans[0].lat;
-    lon = ans[0].lon;
+    console.log(ans);
+
+    if (ans.length > 0) {
+      lat = ans[0].lat;
+      lon = ans[0].lon;
+    }
   }
 
-  //   Calculate bounding box
-  const lat_min = Number(lat) - Number(radius) / 111.1;
-  const lat_max = Number(lat) + Number(radius) / 111.1;
-  const lon_min =
-    Number(lon) - Number(radius) / (111.1 * Math.cos((lat * 3.14159) / 180));
-  const lon_max =
-    Number(lon) + Number(radius) / (111.1 * Math.cos((lat * 3.14159) / 180));
-
-  const place_types = ["restaurant"];
-  const query_params = place_types.join("|");
+  console.log(lat, lon);
 
   const getPlaces = await fetch(
-    `https://nominatim.openstreetmap.org/search?q=${query_params}&format=jsonv2&bounded=1&viewbox=${lon_min},${lat_min},${lon_max},${lat_max}`
+    `https://api.geoapify.com/v2/places?categories=${filter}&filter=circle:${Number(
+      lon
+    )},${Number(lat)},${Number(radius)}&bias=proximity:${Number(lon)},${Number(
+      lat
+    )}&limit=20&apiKey=${"07ca88d909324c73a34e34751ef5309c"}`
   );
 
-  const places = await getPlaces.json();
+  let places = await getPlaces.json();
 
-  return res.send({
-    status: true,
-    places: places,
-  });
+  // console.log(places);
+
+  if (places.features.length > 0) {
+    return res.send({
+      status: true,
+      places: places,
+      message: "OK",
+    });
+  } else {
+    return res.send({
+      status: false,
+      places: [],
+      message: "No Place Found",
+    });
+  }
 };
