@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom';
 import Fulldetails from './Fulldetails';
 
 const Placedetails = () => {
-    
-        const [featues, setfetures] = useState([]);
+
+  const [featues, setfetures] = useState([]);
   const [selectedFeature, setSelectedFeature] = useState(null);
 
-  const id = useParams().id; 
-  // console.log(id);
+  const id = useParams().id;
+  console.log(id);
 
   useEffect(() => {
     fetch(`https://apurba3036.github.io/apitest/fakedb.json`)
@@ -35,7 +35,7 @@ const Placedetails = () => {
       )}
     </div>
   );
-    
+
 };
 
 export default Placedetails;

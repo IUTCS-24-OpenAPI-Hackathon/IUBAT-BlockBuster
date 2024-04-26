@@ -13,7 +13,7 @@ const NearByPlaces = () => {
         </div>
         <div className="px-14">
           {nearby.features.map((a) => (
-            <Singleplace key={a.id} a={a}></Singleplace>
+            <Singleplace key={a.properties.place_id} a={a}></Singleplace>
           ))}
         </div>
       </div>

@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
   if (!token) {
     return res.status(401).send("Access denied! No token provided");
   }
-   else {
+  else {
     console.log(token.split(" ")[1]);
     token = token.split(" ")[1].trim();
   }

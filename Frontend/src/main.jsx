@@ -9,6 +9,7 @@ import Blogs from "./Pages/Blogs.jsx";
 import Contact from "./Pages/Contact.jsx";
 import Home from "./Pages/Home.jsx";
 import NearByPlaces from "./Pages/NearByPlaces.jsx";
+import Placedetails from "./Pages/Placedetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
         path: "/nearbyPlaces",
         element: <NearByPlaces></NearByPlaces>,
       },
+      {
+        path: "/nearbyPlaces/:id",
+        element: <Placedetails></Placedetails>,
+      }
     ],
   },
 ]);
