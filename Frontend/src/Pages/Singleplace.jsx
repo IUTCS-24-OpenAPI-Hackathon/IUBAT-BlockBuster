@@ -1,17 +1,14 @@
-import React from 'react';
-import { FaMoneyBill1Wave } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
-const Singleplace = ({a}) => {
-    console.log(a);
-    return (
-        <div>
-        <div className="card mt-5">
+// eslint-disable-next-line react/prop-types
+const Singleplace = ({ a }) => {
+  console.log(a);
+  return (
+    <div>
+      <div className="card mt-5">
         <div className="md:flex items-center justify-around g-0 py-4 px-2 bg-slate-300 rounded-md">
           <div className="col-md-4 p-3">
-           <img src={a.image} className="w-full md:w-48 rounded object-cover" alt="..." />
-
+            {/* <img src={a.image} className="w-full md:w-48 rounded object-cover" alt="..." /> */}
           </div>
-          <div className="col-md-4">
+          {/* <div className="col-md-4">
             <div className="card-body">
               <h5 className="card-title">{a.location_name}</h5>
               <p className="card-text"> Longitude: {a.longitude}</p>
@@ -29,12 +26,11 @@ const Singleplace = ({a}) => {
           </div> <br />
           <div className=''>
           <Link to={`/NearPlaces/${a.id}`} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Details</Link>
+        </div> */}
         </div>
-        </div>
-       
       </div>
-</div>
-    );
+    </div>
+  );
 };
 
 export default Singleplace;

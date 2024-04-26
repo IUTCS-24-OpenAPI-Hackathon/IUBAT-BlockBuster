@@ -47,15 +47,8 @@ const Search = () => {
 
       const data = await response.json();
 
-      setNearby(data);
+      setNearby(data.places);
       console.log(data);
-
-      // Optionally, reset the form data after successful submission
-      // setFormData({
-      //   location: "",
-      //   radius: "",
-      //   filter: "",
-      // });
     } catch (error) {
       console.error("Error:", error);
     }
