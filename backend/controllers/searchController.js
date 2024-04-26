@@ -36,25 +36,50 @@ module.exports.nearbyLocations = async (req, res) => {
     );
     ans = await ans.json();
 
-    console.log(ans);
-
     if (ans.length > 0) {
       lat = ans[0].lat;
       lon = ans[0].lon;
     }
   }
 
-  const getPlaces = await fetch(
-    `https://api.geoapify.com/v2/places?categories=${filter}&filter=circle:${Number(
-      lon
-    )},${Number(lat)},${Number(radius)}&bias=proximity:${Number(lon)},${Number(
-      lat
-    )}&limit=20&apiKey=${"07ca88d909324c73a34e34751ef5309c"}`
-  );
+  let places = {
+    features: [],
+  };
+  if (Number(radius) === 0) {
+    let iso = await fetch(
+      `https://api.geoapify.com/v1/isoline?lat=${Number(lat)}&lon=${Number(
+        lon
+      )}&type=time&mode=drive&range=1800&apiKey=${"07ca88d909324c73a34e34751ef5309c"}`
+    );
 
-  let places = await getPlaces.json();
+    iso = await iso.json();
 
-  // console.log(places);
+    // https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=geometry:c607702b710773eb5aa18fb50ae4621c&bias=proximity:91.9726761,21.443683&limit=20&apiKey=07ca88d909324c73a34e34751ef5309c
+
+    console.log(lon);
+    console.log(lat);
+
+    const getPlaces = await fetch(
+      `https://api.geoapify.com/v2/places?categories=${filter}&filter=geometry:${
+        iso.properties.id
+      }&
+      bias=proximity:${Number(lon)},${Number(
+        lat
+      )}&limit=10&apiKey=${"07ca88d909324c73a34e34751ef5309c"}`
+    );
+
+    places = await getPlaces.json();
+  } else {
+    const getPlaces = await fetch(
+      `https://api.geoapify.com/v2/places?categories=${filter}&filter=circle:${Number(
+        lon
+      )},${Number(lat)},${Number(radius)}&bias=proximity:${Number(
+        lon
+      )},${Number(lat)}&limit=20&apiKey=${"07ca88d909324c73a34e34751ef5309c"}`
+    );
+
+    places = await getPlaces.json();
+  }
 
   if (places.features.length > 0) {
     return res.send({

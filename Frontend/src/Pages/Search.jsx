@@ -66,16 +66,18 @@ const Search = () => {
 
   const handleAutoSuggest = async (e) => {
     if (e.target.value) {
-      //     let res =
-      //       await fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=${
-      //         e.target.value
-      //       }&format=json&apiKey=${"07ca88d909324c73a34e34751ef5309c"}
+      // let res =
+      //   await fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=${
+      //     e.target.value
+      //   }&format=json&apiKey=${"07ca88d909324c73a34e34751ef5309c"}
       // `);
       // res = await res.json();
       // setSuggestion(res.results);
       setSuggestion([]);
     }
   };
+
+  console.log(suggestion);
 
   function debounce(func, delay) {
     let timeoutId;
@@ -145,7 +147,7 @@ const Search = () => {
                 value={formData.radius}
                 onChange={handleChange}
               >
-                <option value="">None</option>
+                <option value="0">Filter By Radius</option>
                 <option value="5000">5km</option>
                 <option value="10000">10km</option>
                 <option value="15000">15km</option>
@@ -161,7 +163,7 @@ const Search = () => {
                 value={formData.filter}
                 onChange={handleChange}
               >
-                <option value="">None</option>
+                <option hidden>Filter by Aminity</option>
                 <option value="building.healthcare">Hospital</option>
                 <option value="catering.restaurant">Restaurant</option>
               </select>
