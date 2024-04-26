@@ -15,7 +15,9 @@ module.exports.myLocation = async (req, res) => {
   console.log(lat);
 
   const response = await fetch(
-    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${Number(lat)}&lon=${Number(lon)}`
+    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${Number(
+      lat
+    )}&lon=${Number(lon)}`
   );
 
   const location = await response.json();
