@@ -1,55 +1,46 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import Home from './Pages/Home.jsx';
-import Blogs from './Pages/Blogs.jsx';
-import About from './Pages/About.jsx';
-import Contact from './Pages/Contact.jsx';
-
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./App.jsx";
+import MapComponent from "./Components/Map/MapComponent.jsx";
+import RestaurantsNearby from "./Components/Map/RestaurantsNearby.jsx";
+import "./index.css";
+import Home from "./Pages/Home.jsx";
+import HospitalsNearby from "./Components/Map/HospitalsNearby.jsx";
+import PlacesNearby from "./Components/Map/PlacesNearby.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
-    children: [{
-
+    children: [
+      {
         path: "/",
-        element: <Home></Home>
-    },
-    {
+        element: <Home></Home>,
+      },
 
-      path:"/Blogs",
-      element: <Blogs></Blogs>
-    }
-    ,
-    {
-
-      path:"/About",
-      element: <About></About>
-    }
-    ,
-    {
-
-      path:"/Contact",
-      element: <Contact></Contact>
-    },
-    {
-     
-      
-    }
-      
-  ]
+      {
+        path: "/Map", // Add a route for the MapComponent
+        element: <MapComponent></MapComponent>,
+      },
+      {
+        path: "/restaurants", // Add a route for the restaurant
+        element: <RestaurantsNearby></RestaurantsNearby>,
+      },
+      {
+        path: "/hospitals", // Add a route for the restaurant
+        element: <HospitalsNearby></HospitalsNearby>,
+      },
+      {
+        path: "/places", // Add a route for the restaurant
+        element: <PlacesNearby></PlacesNearby>,
+      },
+    ],
   },
-  
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
