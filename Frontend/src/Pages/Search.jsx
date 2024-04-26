@@ -4,6 +4,8 @@ import { useAppContext } from "../../contexts/appContext";
 const Search = () => {
   const { location, geo, setNearby } = useAppContext();
 
+  const [suggestion, setSuggestion] = useState([]);
+
   const [formData, setFormData] = useState({
     location: "",
     radius: "",
@@ -61,9 +63,51 @@ const Search = () => {
     });
   };
 
+  const handleAutoSuggest = async (e) => {
+    if (e.target.value) {
+      //     let res =
+      //       await fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=${
+      //         e.target.value
+      //       }&format=json&apiKey=${"07ca88d909324c73a34e34751ef5309c"}
+      // `);
+      // res = await res.json();
+      // setSuggestion(res.results);
+      setSuggestion([]);
+    }
+  };
+
+  function debounce(func, delay) {
+    let timeoutId;
+
+    return function () {
+      const context = this;
+      const args = arguments;
+
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        func.apply(context, args);
+      }, delay);
+    };
+  }
+
+  const debouncedInputHandler = (e) => debounce(handleAutoSuggest(e), 1500); // Debounce input handler with a delay of 500ms
+
+  const handleLocationInput = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+
+    debouncedInputHandler(e);
+  };
+
   return (
     <div className="flex justify-center items-center">
-      <form className="text-center w-full" onSubmit={handleSubmit}>
+      <form
+        className="text-center w-full"
+        onSubmit={handleSubmit}
+        autoComplete="off"
+      >
         <label className="block mb-2 text-lg font-medium">
           Search Your Location
         </label>
@@ -77,8 +121,17 @@ const Search = () => {
               placeholder="Dhaka"
               required
               value={formData.location}
-              onChange={handleChange}
+              onChange={handleLocationInput}
+              list="locations"
             />
+            <datalist id="locations">
+              {suggestion.length > 0 &&
+                suggestion.map((s, index) => (
+                  <option key={index} value={s.formatted}>
+                    {s.formatted}
+                  </option>
+                ))}
+            </datalist>
           </div>
           {/* Radius Dropdown */}
           <div className="w-full">

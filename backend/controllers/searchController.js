@@ -45,7 +45,7 @@ module.exports.nearbyLocations = async (req, res) => {
   let { location, lat, lon, radius, filter } = req.body;
 
   if (!lat) {
-    const encodedAddress = encodeURIComponent(`${location},${"dhaka"}`);
+    const encodedAddress = encodeURIComponent(`${location}`);
     let ans = await fetch(
       `https://nominatim.openstreetmap.org/search?q=${encodedAddress}&format=json`
     );
