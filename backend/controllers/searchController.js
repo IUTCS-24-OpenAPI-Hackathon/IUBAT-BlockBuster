@@ -31,18 +31,30 @@ module.exports.myLocation = async (req, res) => {
 };
 
 module.exports.nearbyLocations = async (req, res) => {
-  const { lat, lon, radius } = req.body;
+  let { location, lat, lon, radius } = req.body;
+
+  if (!lat) {
+    console.log(location);
+    const encodedAddress = encodeURIComponent(`${location},${"india"}`);
+    let ans = await fetch(
+      `https://nominatim.openstreetmap.org/search?q=${encodedAddress}&format=json`
+    );
+    ans = await ans.json();
+
+    lat = ans[0].lat;
+    lon = ans[0].lon;
+  }
 
   //   Calculate bounding box
-  const lat_min = lat - radius / 111.1;
-  const lat_max = lat + radius / 111.1;
-  const lon_min = lon - radius / (111.1 * Math.cos((lat * 3.14159) / 180));
-  const lon_max = lon + radius / (111.1 * Math.cos((lat * 3.14159) / 180));
+  const lat_min = Number(lat) - Number(radius) / 111.1;
+  const lat_max = Number(lat) + Number(radius) / 111.1;
+  const lon_min =
+    Number(lon) - Number(radius) / (111.1 * Math.cos((lat * 3.14159) / 180));
+  const lon_max =
+    Number(lon) + Number(radius) / (111.1 * Math.cos((lat * 3.14159) / 180));
 
-  const place_types = ["hotel"];
+  const place_types = ["restaurant"];
   const query_params = place_types.join("|");
-
-  console.log(query_params);
 
   const getPlaces = await fetch(
     `https://nominatim.openstreetmap.org/search?q=${query_params}&format=jsonv2&bounded=1&viewbox=${lon_min},${lat_min},${lon_max},${lat_max}`
