@@ -10,6 +10,11 @@ import Contact from "./Pages/Contact.jsx";
 import Home from "./Pages/Home.jsx";
 import NearByPlaces from "./Pages/NearByPlaces.jsx";
 import Placedetails from "./Pages/Placedetails.jsx";
+import UserContext from "./providers/UserContext.jsx";
+import PrivateRoute from "./routes/PrivateRoute.jsx";
+import Login from "./Components/Login.jsx";
+import Register from "./Components/Register.jsx";
+
 
 const router = createBrowserRouter([
   {
@@ -18,36 +23,47 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: (
+          <PrivateRoute>
+            <Home></Home>
+          </PrivateRoute>
+        ),
       },
-      {
-        path: "/Blogs",
-        element: <Blogs></Blogs>,
-      },
-      {
-        path: "/About",
-        element: <About></About>,
-      },
-      {
-        path: "/Contact",
-        element: <Contact></Contact>,
-      },
+
       {
         path: "/nearbyPlaces",
-        element: <NearByPlaces></NearByPlaces>,
+        element: (
+          <PrivateRoute>
+            <NearByPlaces></NearByPlaces>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/nearbyPlaces/:id",
-        element: <Placedetails></Placedetails>,
-      }
+        element: (
+          <PrivateRoute>
+            <Placedetails></Placedetails>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AppContextProvider>
-      <RouterProvider router={router} />
-    </AppContextProvider>
+    <UserContext>
+      <AppContextProvider>
+        <RouterProvider router={router} />
+      </AppContextProvider>
+    </UserContext>
   </React.StrictMode>
 );
