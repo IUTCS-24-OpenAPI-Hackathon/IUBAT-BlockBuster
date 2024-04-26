@@ -145,7 +145,7 @@ const Search = () => {
                 value={formData.radius}
                 onChange={handleChange}
               >
-                <option value="">None</option>
+                {/* <option value="">None</option> */}
                 <option value="5000">5km</option>
                 <option value="10000">10km</option>
                 <option value="15000">15km</option>

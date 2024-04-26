@@ -12,10 +12,7 @@ import { AuthContext } from "../providers/UserContext";
 const Nav = () => {
   const [ismenuOpen, setismenu] = useState(false);
 
-  const toggoleMenu = () => {
-    setismenu(!ismenuOpen);
-  };
-  //navitems
+   
 
   const { user, logOut } = useContext(AuthContext);
   console.log("context", user);

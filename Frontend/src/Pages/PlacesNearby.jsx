@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Circle } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useAppContext } from "../../contexts/appContext";
@@ -18,14 +18,16 @@ const PlacesNearby = () => {
     latitude: 23.873751,
     longitude: 90.396454,
   });
+  const [searched, setSearched] = useState(false); // State to track if a search has been made
   const mapRef = useRef(null);
 
   useEffect(() => {
-    if (nearby && nearby.features) {
-      nearby.features.map((feature) => {
-        console.log(feature.geometry);
-        return null; // Added return null to satisfy eslint
+    if (nearby && nearby.features && nearby.features.length > 0) {
+      setCurrentLocation({
+        latitude: nearby.features[0]?.properties?.lat,
+        longitude: nearby.features[0]?.properties?.lon,
       });
+      setSearched(true); // Set searched to true when nearby data is available
     }
   }, [nearby]);
 
@@ -48,6 +50,13 @@ const PlacesNearby = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
+          {searched && ( // Conditionally render the Circle component
+            <Circle
+              center={[currentLocation.latitude, currentLocation.longitude]}
+              radius={4000} // Adjust the radius as needed (in meters)
+              pathOptions={{ color: "blue", fillColor: "blue" }}
+            />
+          )}
           {nearby?.features?.map((feature, index) =>
             feature.geometry && feature.geometry ? (
               <Marker
