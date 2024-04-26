@@ -10,6 +10,8 @@ import Home from './Pages/Home.jsx';
 import Blogs from './Pages/Blogs.jsx';
 import About from './Pages/About.jsx';
 import Contact from './Pages/Contact.jsx';
+import NearByPlaces from './Pages/NearByPlaces.jsx';
+import Placedetails from './Pages/Placedetails.jsx';
 
 
 const router = createBrowserRouter([
@@ -39,7 +41,17 @@ const router = createBrowserRouter([
       element: <Contact></Contact>
     },
     {
-     
+      path:"/NearPlaces",
+      element:<NearByPlaces></NearByPlaces>,
+      loader:()=>fetch(`fakedb.json`)
+
+      
+    },
+    {
+      path:"/NearPlaces/:id",
+      element:<Placedetails></Placedetails>
+      
+
       
     }
       

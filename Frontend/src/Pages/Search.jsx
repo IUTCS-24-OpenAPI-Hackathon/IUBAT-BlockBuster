@@ -23,7 +23,7 @@ const Search = () => {
   
           {/* Radius Dropdown */}
           <div className="flex mb-4">
-            <label htmlFor="radius" className="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Select Radius: </label>
+            <label htmlFor="radius" className="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Select Radius</label>
             <select id="radius" name="radius" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option value="">None</option>
               <option value="10km">10km</option>

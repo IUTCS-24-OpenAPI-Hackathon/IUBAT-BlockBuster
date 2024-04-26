@@ -12,15 +12,19 @@ module.exports.searchLocation = async (req, res) => {
 module.exports.myLocation = async (req, res) => {
   const { lat, lon } = req.body;
 
+  console.log(lat);
+
   const response = await fetch(
-    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
+    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${Number(lat)}&lon=${Number(lon)}`
   );
 
   const location = await response.json();
 
+  console.log(location);
+
   return res.send({
     status: true,
-    myLocation: _.pick(location, ["address.town"]),
+    myLocation: location,
   });
 };
 

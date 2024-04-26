@@ -11,3 +11,4 @@ router.route("/nearbyPlaces").post(nearbyLocations);
 router.route("/").post(searchLocation);
 
 module.exports = router;
+// localhost:4003/api/search/myLocation
