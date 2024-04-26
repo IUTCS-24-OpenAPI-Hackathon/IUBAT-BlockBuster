@@ -59,8 +59,6 @@ module.exports.nearbyLocations = async (req, res) => {
     }
   }
 
-  console.log(lat, lon);
-
   const getPlaces = await fetch(
     `https://api.geoapify.com/v2/places?categories=${filter}&filter=circle:${Number(
       lon
