@@ -79,9 +79,11 @@ module.exports.getDetails = async (req, res) => {
   );
   details = await details.json();
 
+  console.log(details);
+
   if (details.features.length > 0) {
-    let lon = details.features[0].geometry.coordinates[0];
-    let lat = details.features[0].geometry.coordinates[1];
+    let lon = details.features[0].properties.lon;
+    let lat = details.features[0].properties.lat;
 
     console.log(lat, lon);
     let weather = await fetch(
