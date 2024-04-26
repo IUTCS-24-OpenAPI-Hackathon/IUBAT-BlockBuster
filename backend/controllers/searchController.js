@@ -26,26 +26,11 @@ module.exports.myLocation = async (req, res) => {
   });
 };
 
-function calculateDistance(lat1, lon1, lat2, lon2) {
-  const R = 6371; // Radius of the earth in km
-  const dLat = ((lat2 - lat1) * Math.PI) / 180; // deg2rad below
-  const dLon = ((lon2 - lon1) * Math.PI) / 180;
-  const a =
-    0.5 -
-    Math.cos(dLat) / 2 +
-    (Math.cos((lat1 * Math.PI) / 180) *
-      Math.cos((lat2 * Math.PI) / 180) *
-      (1 - Math.cos(dLon))) /
-      2;
-
-  return R * 2 * Math.asin(Math.sqrt(a));
-}
-
 module.exports.nearbyLocations = async (req, res) => {
   let { location, lat, lon, radius, filter } = req.body;
 
   if (!lat) {
-    const encodedAddress = encodeURIComponent(`${location},${"dhaka"}`);
+    const encodedAddress = encodeURIComponent(`${location}`);
     let ans = await fetch(
       `https://nominatim.openstreetmap.org/search?q=${encodedAddress}&format=json`
     );
@@ -84,4 +69,18 @@ module.exports.nearbyLocations = async (req, res) => {
       message: "No Place Found",
     });
   }
+};
+
+module.exports.getDetails = async (req, res) => {
+  const id = req.params.id;
+
+  let details = await fetch(
+    `https://api.geoapify.com/v2/place-details?id=${id}&apiKey=${"07ca88d909324c73a34e34751ef5309c"}`
+  );
+  details = await details.json();
+
+  return res.send({
+    status: true,
+    details: details,
+  });
 };
