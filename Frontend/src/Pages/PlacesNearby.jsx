@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
-import { MapContainer, TileLayer, Marker, Popup, Circle } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { useAppContext } from "../../contexts/appContext";
+import "leaflet/dist/leaflet.css";
+import React, { useEffect, useRef, useState } from "react";
+import { Circle, MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Link } from "react-router-dom";
+import { useAppContext } from "../../contexts/appContext";
 
 const iconDesign = {
   iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",

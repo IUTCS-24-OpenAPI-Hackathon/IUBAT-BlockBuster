@@ -152,11 +152,11 @@ const Search = () => {
                 value={formData.radius}
                 onChange={handleChange}
               >
-                <option value="0">Filter By Radius</option>
+                <option value="1000">Filter By Radius</option>
                 <option value="5000">5km</option>
-                <option value="150000">150km</option>
-                <option value="250000">250km</option>
-                <option value="500000">500km</option>
+                <option value="15000">150km</option>
+                <option value="25000">250km</option>
+                <option value="50000">500km</option>
                 {/* <option value="1000000">100km</option> */}
               </select>
             </div>
