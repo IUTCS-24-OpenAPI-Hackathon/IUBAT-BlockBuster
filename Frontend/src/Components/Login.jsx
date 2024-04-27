@@ -41,6 +41,7 @@ const Login = () => {
                 type="email"
                 name="email"
                 placeholder="Email"
+                defaultValue={`qiqyrezy@citmo.net`}
                 className="input border border-slate-500"
                 required
               />
@@ -55,6 +56,7 @@ const Login = () => {
                 type="password"
                 name="password"
                 placeholder="Password"
+                defaultValue={`Pa$$w0rd!`}
                 className="input border border-slate-600"
                 required
               />
