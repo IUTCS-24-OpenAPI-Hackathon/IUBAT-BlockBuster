@@ -56,9 +56,6 @@ module.exports.nearbyLocations = async (req, res) => {
 
     // https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=geometry:c607702b710773eb5aa18fb50ae4621c&bias=proximity:91.9726761,21.443683&limit=20&apiKey=07ca88d909324c73a34e34751ef5309c
 
-    console.log(lon);
-    console.log(lat);
-
     const getPlaces = await fetch(
       `https://api.geoapify.com/v2/places?categories=${filter}&filter=geometry:${
         iso.properties.id
@@ -104,13 +101,10 @@ module.exports.getDetails = async (req, res) => {
   );
   details = await details.json();
 
-  console.log(details);
-
   if (details.features.length > 0) {
     let lon = details.features[0].properties.lon;
     let lat = details.features[0].properties.lat;
 
-    console.log(lat, lon);
     let weather = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${"130d0921ee7f62143f354d0641c28676"}`
     );

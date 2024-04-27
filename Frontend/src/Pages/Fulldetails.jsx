@@ -28,7 +28,7 @@ const Fulldetails = ({ features }) => {
 
       <NewReview id={place_id} />
 
-      <Reviews id={place_id} />
+      <Reviews id={place_id} lat={lat} lon={lon} />
     </div>
   );
 };

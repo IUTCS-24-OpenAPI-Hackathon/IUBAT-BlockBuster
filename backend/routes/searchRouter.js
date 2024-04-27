@@ -4,6 +4,7 @@ const {
   myLocation,
   nearbyLocations,
   getDetails,
+  getFSQ,
 } = require("../controllers/searchController");
 const router = express.Router();
 
