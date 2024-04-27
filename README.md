@@ -54,7 +54,7 @@ The main challenge of this project was selecting the most suitable APIs. As free
 Map Master is a versatile tool designed to streamline travel planning and exploration. With its robust technology stack and community-driven approach, it offers a seamless experience for travel enthusiasts. We thank IUT for organizing this hackathon and providing an opportunity for us to showcase our skills and creativity.
 
 ---
-
+---
 This documentation provides a high-level overview and serves as a guide for the development and contribution process of the Map Master project. For detailed implementation and usage instructions, please refer to the project's GitHub repository.
 
 ## Collaborators
