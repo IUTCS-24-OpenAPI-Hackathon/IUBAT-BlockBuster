@@ -53,3 +53,8 @@ Map Master is designed to be a versatile tool for travelers, offering a seamless
 ---
 
 This documentation provides a high-level overview and is intended to guide the development and contribution process for the Map Master project. For detailed implementation and usage instructions, please refer to the project's GitHub repository.
+
+## Collaborators
+1. Abdullah Miraz
+2. Shahidul Alam
+3. Nazmus Sakib Apurbo
