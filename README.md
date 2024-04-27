@@ -28,10 +28,10 @@ To set up the project locally, clone the GitHub repository provided by the organ
 ## Development Guidelines We've followed for project
 - **Code Management**: All code and documentation must be managed within the provided GitHub repository .
 - **API Usage**: Use free or freemium APIs and adhere to good API consumption practices 
-- **Coding Standards**: Follow best coding practices for clean and maintainable code 
-- **Frontend Design**: Create a user-friendly and intuitive interface with responsive design 
+- **Coding Standards**: Followed best coding practices for clean and maintainable code 
+- **Frontend Design**: Created a user-friendly and intuitive interface with responsive design 
 - **Testing**: Automation tests are optional but recommended.
-- **Documentation**: Thoroughly document the project, detailing architecture, APIs used, and challenges faced.
+- **Documentation**: Thoroughly document the project, detailing architecture, APIs used, and challenges we've faced.
 
 ## Contribution
 - **Community Engagement**: Users can contribute information about new or unlisted local attractions 
@@ -47,6 +47,8 @@ To set up the project locally, clone the GitHub repository provided by the organ
 
 For a complete list of dependencies and scripts, refer to the `package.json` file in the project repository.
 
+## Project Collaboration Story:
+The Main challenge of this project was understanding what kind of api we wanted. As free api's doesnt provides much data, its upto us how much we can get from them and using as less as api requests for efficiency. Time maintennacne and team work was another thing to be remembered. From 3 of us, Abdullah Miraz read the question throughly and shahidul handled the api calling and backend simplw works, Apurbo hanldes the frontend. miraz handled the authentication and documentattion part and made sure we are collaborating altogether as this is a part of hackathong. overall weve achieved the highest possible way we could've done. The most time consuming part was jsearching about the correct api that will give us the most value for least hussle and which have to be open and free to everyone. we've read the  questions throughly and gone throuch each requirement. 
 ## Conclusion
 Map Master is designed to be a versatile tool for travelers, offering a seamless experience in exploring attractions and planning trips. With its robust technology stack and community-driven approach, it stands out as a valuable resource for any travel enthusiast.
 
