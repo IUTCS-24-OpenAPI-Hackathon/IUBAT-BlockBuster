@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Fulldetails from "./Fulldetails";
+import { AppContextProvider } from "../../contexts/appContext";
 
 const Placedetails = () => {
   const [features, setFeatures] = useState([]);
   const [loaded, setLoaded] = useState(false);
-
+ 
   const id = useParams().id;
 
   useEffect(() => {

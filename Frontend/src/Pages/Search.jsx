@@ -121,7 +121,7 @@ const Search = () => {
           <label className="block mb-2 text-lg font-medium">
             Search Your Location
           </label>
-          <div className="w-full flex">
+          <div className="w-full flex ">
             <div className="w-full">
               <input
                 type="text"

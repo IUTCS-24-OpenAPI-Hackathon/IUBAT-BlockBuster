@@ -104,7 +104,9 @@ module.exports.getDetails = async (req, res) => {
   );
   details = await details.json();
 
-  if (details.features.length > 0) {
+  console.log(details);
+
+  if (details?.features?.length) {
     let lon = details.features[0].properties.lon;
     let lat = details.features[0].properties.lat;
 
