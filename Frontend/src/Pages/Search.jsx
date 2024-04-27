@@ -154,9 +154,9 @@ const Search = () => {
               >
                 <option value="1000">Filter By Radius</option>
                 <option value="5000">5km</option>
-                <option value="15000">150km</option>
-                <option value="25000">250km</option>
-                <option value="50000">500km</option>
+                <option value="1500">15km</option>
+                <option value="2500">25km</option>
+                <option value="5000">50km</option>
                 {/* <option value="1000000">100km</option> */}
               </select>
             </div>
