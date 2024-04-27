@@ -31,8 +31,14 @@ const PlacesNearby = () => {
 
       // Zoom map towards circle when search is made
       if (mapRef.current) {
-        const circleBounds = mapRef.current.getBounds();
-        mapRef.current.fitBounds(circleBounds);
+        const bounds = new L.LatLngBounds([
+          [currentLocation.latitude, currentLocation.longitude],
+          [
+            nearby.features[nearby.features.length - 1]?.properties?.lat,
+            nearby.features[nearby.features.length - 1]?.properties?.lon,
+          ],
+        ]);
+        mapRef.current.fitBounds(bounds);
       }
     }
   }, [nearby]);
@@ -75,7 +81,16 @@ const PlacesNearby = () => {
           />
           {searched && nearby?.features?.length > 0 && ( // Conditionally render the Circle component
             <Circle
-              center={[currentLocation.latitude, currentLocation.longitude]}
+              center={[
+                (currentLocation.latitude +
+                  nearby.features[nearby.features.length - 1]?.properties
+                    ?.lat) /
+                  2,
+                (currentLocation.longitude +
+                  nearby.features[nearby.features.length - 1]?.properties
+                    ?.lon) /
+                  2,
+              ]}
               radius={calculateDistance(
                 currentLocation.latitude,
                 currentLocation.longitude,
