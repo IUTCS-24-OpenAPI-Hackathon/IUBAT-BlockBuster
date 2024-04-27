@@ -5,6 +5,7 @@ Map Master is a comprehensive application developed by Team IUBAT_BlockBuster th
 
 ## Technology Stack
 - **Frontend**: Vite React
+- **Backend**: Expres js (node)
 - **Mapping APIs**: OpenStreetMap, Geoapify
 - **Authentication**: Firebase
 - **Database**: MongoDB (for user reviews)
@@ -24,7 +25,7 @@ To set up the project locally, clone the GitHub repository provided by the organ
 - **Detailed Attraction Information**: Includes name, description, weather conditions, and more.
 - **Local Amenities Information**: Provides info on hotels, travel options, restaurants, and hospitals 
 
-## Development Guidelines
+## Development Guidelines We've followed for project
 - **Code Management**: All code and documentation must be managed within the provided GitHub repository .
 - **API Usage**: Use free or freemium APIs and adhere to good API consumption practices 
 - **Coding Standards**: Follow best coding practices for clean and maintainable code 
