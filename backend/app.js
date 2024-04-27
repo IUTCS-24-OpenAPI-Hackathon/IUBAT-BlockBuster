@@ -31,6 +31,10 @@ app.get("/", (req, res) => {
   return res.send({ msg: "ok" });
 });
 
+app.use((err, req, res, next) => {
+  return res.status(500).send("Something went wrong");
+});
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
