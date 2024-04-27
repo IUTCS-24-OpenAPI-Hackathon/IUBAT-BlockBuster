@@ -2,13 +2,12 @@
 import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 const Singleplace = ({ a }) => {
-  console.log(a);
   return (
     <div>
       <div className="card mt-5">
-        <div className="md:flex items-center justify-around g-0 py-4 px-2 bg-slate-300 rounded-md">
-          <FaLocationDot className="mx-auto my-3 text-5xl text-blue-800" /> Address:{" "}
-          {a.properties.address_line2}
+        <div className="g-0 py-4 px-2 bg-slate-300 rounded-md">
+          <FaLocationDot className="mx-auto my-3 text-5xl text-blue-800" />{" "}
+          Address: {a.properties.address_line2}
           <div className="col-md-4 p-3">
             {/* <img src={a.image} className="w-full md:w-48 rounded object-cover" alt="..." /> */}
           </div>
