@@ -4,11 +4,9 @@ import { useAppContext } from "../../contexts/appContext";
 
 const Gps = () => {
   // const [location, setLocation] = useState(null);
-  const [localLocation, setLocalLocation] = useState({
-    latitude: "",
-    longitude: "",
-  });
-  const { location, setLocation, setGeo } = useAppContext();
+
+  const { location, setLocation, setGeo, localLocation, setLocalLocation } =
+    useAppContext();
 
   const [error, setError] = useState(null);
   const [responseMessage, setResponseMessage] = useState("");

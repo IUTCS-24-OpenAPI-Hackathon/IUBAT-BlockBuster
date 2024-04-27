@@ -15,8 +15,9 @@ const Fulldetails = ({ features }) => {
       <p className="font-bold">Address: {formatted}</p>
       <p className="font-bold">Temperature: {main.temp}</p>
       <div className="font-bold">Visibility: {visibility}</div>
-      <p className="font-bold">
-        Wind Speed: {wind.speed} Degree:{wind.deg}
+      <p>
+        Wind Speed: <span className="font-bold"> {wind.speed}</span>{" "}
+        Temperature: <span className="font-bold">{wind.deg} kelvin</span>
       </p>
       <p className="font-bold">Category: {(categories[0], categories[1])}</p>
       <p className="font-bold">Name: {name}</p>

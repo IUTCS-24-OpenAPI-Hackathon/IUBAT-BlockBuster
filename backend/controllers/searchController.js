@@ -29,6 +29,9 @@ module.exports.myLocation = async (req, res) => {
 module.exports.nearbyLocations = async (req, res) => {
   let { location, lat, lon, radius, filter } = req.body;
 
+  console.log(location);
+  console.log(lat);
+
   if (!lat) {
     const encodedAddress = encodeURIComponent(`${location}`);
     let ans = await fetch(
@@ -72,7 +75,7 @@ module.exports.nearbyLocations = async (req, res) => {
         lon
       )},${Number(lat)},${Number(radius)}&bias=proximity:${Number(
         lon
-      )},${Number(lat)}&limit=20&apiKey=${"07ca88d909324c73a34e34751ef5309c"}`
+      )},${Number(lat)}&limit=10&apiKey=${"07ca88d909324c73a34e34751ef5309c"}`
     );
 
     places = await getPlaces.json();

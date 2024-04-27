@@ -3,15 +3,16 @@ import { useAppContext } from "../../contexts/appContext";
 import PlacesNearby from "./PlacesNearby";
 
 const Search = () => {
-  const { location, geo, setNearby } = useAppContext();
+  const { location, setLocation, setLocalLocation, geo, setNearby, setGeo } =
+    useAppContext();
 
   const [suggestion, setSuggestion] = useState([]);
+  const [loader, setLoader] = useState(false);
 
   const [formData, setFormData] = useState({
     location: "",
-    radius: "",
-    filter: "",
-    type: "",
+    radius: "0",
+    filter: "tourism",
   });
 
   useEffect(() => {
@@ -23,9 +24,11 @@ const Search = () => {
     }
   }, [location]);
 
+  console.log(location);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoader(true);
     try {
       const response = await fetch(
         "http://localhost:4003/api/search/nearbyPlaces",
@@ -51,9 +54,10 @@ const Search = () => {
       const data = await response.json();
 
       setNearby(data.places);
-      console.log(data);
+      setLoader(false);
     } catch (error) {
       console.error("Error:", error);
+      setLoader(false);
     }
   };
 
@@ -65,6 +69,9 @@ const Search = () => {
   };
 
   const handleAutoSuggest = async (e) => {
+    // setLocation({});
+    setLocalLocation({ latitude: "", longitude: "" });
+    setGeo({ lat: "", lon: "" });
     if (e.target.value) {
       // let res =
       //   await fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=${
@@ -76,8 +83,6 @@ const Search = () => {
       setSuggestion([]);
     }
   };
-
-  console.log(suggestion);
 
   function debounce(func, delay) {
     let timeoutId;
@@ -109,7 +114,7 @@ const Search = () => {
       <PlacesNearby />
       <div className="flex justify-center items-center">
         <form
-          className="text-center w-full"
+          className="text-center max-w-[800px] w-full mx-auto"
           onSubmit={handleSubmit}
           autoComplete="off"
         >
@@ -149,10 +154,10 @@ const Search = () => {
               >
                 <option value="0">Filter By Radius</option>
                 <option value="5000">5km</option>
-                <option value="10000">10km</option>
-                <option value="15000">15km</option>
-                <option value="20000">20km</option>
-                <option value="30000">30km</option>
+                <option value="150000">150km</option>
+                <option value="250000">250km</option>
+                <option value="500000">500km</option>
+                {/* <option value="1000000">100km</option> */}
               </select>
             </div>
             <div className="w-full">
@@ -163,31 +168,26 @@ const Search = () => {
                 value={formData.filter}
                 onChange={handleChange}
               >
-                <option hidden>Filter by Aminity</option>
+                <option hidden value="tourism">
+                  Filter by Aminity
+                </option>
                 <option value="building.healthcare">Hospital</option>
                 <option value="catering.restaurant">Restaurant</option>
-              </select>
-            </div>
-            <div className="w-full">
-              <select
-                id="type"
-                name="type"
-                className="w-full px-4 py-1 border-2 rounded"
-                value={formData.type}
-                onChange={handleChange}
-              >
-                <option value="all">None</option>
-                <option value="city">City</option>
-                <option value="district">District</option>
+                <option value="service.financial">ATM</option>
+                <option value="public_transport.bus">Bus station</option>
               </select>
             </div>
           </div>
-          <button
-            type="submit"
-            className="ml-2 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-          >
-            Submit
-          </button>
+          {loader ? (
+            <span>Loading...</span>
+          ) : (
+            <button
+              type="submit"
+              className="ml-2 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 mt-4"
+            >
+              Submit
+            </button>
+          )}
         </form>
       </div>
     </>
