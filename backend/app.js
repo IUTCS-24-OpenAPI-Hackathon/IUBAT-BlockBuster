@@ -8,13 +8,14 @@ const cors = require("cors");
 dotenv.config();
 
 const searchRouter = require("./routes/searchRouter");
+const reviewRouter = require("./routes/reviewRouter");
 
-// mongoose
-//   .connect(process.env.DB_URL)
-//   .then(() => {
-//     console.log("Connected to db");
-//   })
-//   .catch((err) => console.log(err));
+mongoose
+  .connect(process.env.DB_URL)
+  .then(() => {
+    console.log("Connected to db");
+  })
+  .catch((err) => console.log(err));
 
 // Middlewares
 app.use(cors());
@@ -23,6 +24,7 @@ app.use(morgan("dev"));
 
 // Routers
 app.use("/api/search", searchRouter);
+app.use("/api/reviews", reviewRouter);
 
 // Base Route
 app.get("/", (req, res) => {
