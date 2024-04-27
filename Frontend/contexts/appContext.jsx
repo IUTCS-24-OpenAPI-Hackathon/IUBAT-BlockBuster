@@ -7,6 +7,10 @@ export const AppContextProvider = ({ children }) => {
   const [location, setLocation] = useState({});
   const [nearby, setNearby] = useState([]);
   const [geo, setGeo] = useState({ lat: "", lon: "" });
+  const [localLocation, setLocalLocation] = useState({
+    latitude: "",
+    longitude: "",
+  });
   // const [places, setPlace] = useState([]);
 
   return (
@@ -18,6 +22,8 @@ export const AppContextProvider = ({ children }) => {
         setNearby,
         geo,
         setGeo,
+        localLocation,
+        setLocalLocation,
       }}
     >
       {children}

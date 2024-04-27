@@ -1,19 +1,8 @@
-import React, { useContext, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import {
-  FaBars,
-  FaAngleUp,
-  FaDribbble,
-  FaFacebook,
-  FaTwitter,
-} from "react-icons/fa";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/UserContext";
 
 const Nav = () => {
-  const [ismenuOpen, setismenu] = useState(false);
-
-   
-
   const { user, logOut } = useContext(AuthContext);
   console.log("context", user);
 
@@ -26,7 +15,7 @@ const Nav = () => {
   return (
     <header className="bg-black  top-0 right-0 left-0">
       <nav className="px-5 py-5 max-w-7xl mx-auto flex justify-between">
-        <a href="" className="text-lg font-bold text-white">
+        <a href="/" className="text-lg font-bold text-white">
           Location<span className="text-orange-400">Bluster</span>
         </a>
 

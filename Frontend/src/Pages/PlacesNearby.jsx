@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
-import { MapContainer, TileLayer, Marker, Popup, Circle } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import React, { useEffect, useRef, useState } from "react";
+import { Circle, MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { Link } from "react-router-dom";
 import { useAppContext } from "../../contexts/appContext";
 
 const iconDesign = {
@@ -31,8 +31,14 @@ const PlacesNearby = () => {
 
       // Zoom map towards circle when search is made
       if (mapRef.current) {
-        const circleBounds = mapRef.current.getBounds();
-        mapRef.current.fitBounds(circleBounds);
+        const bounds = new L.LatLngBounds([
+          [currentLocation.latitude, currentLocation.longitude],
+          [
+            nearby.features[nearby.features.length - 1]?.properties?.lat,
+            nearby.features[nearby.features.length - 1]?.properties?.lon,
+          ],
+        ]);
+        mapRef.current.fitBounds(bounds);
       }
     }
   }, [nearby]);
@@ -73,18 +79,28 @@ const PlacesNearby = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          {searched && nearby?.features?.length > 0 && ( // Conditionally render the Circle component
-            <Circle
-              center={[currentLocation.latitude, currentLocation.longitude]}
-              radius={calculateDistance(
-                currentLocation.latitude,
-                currentLocation.longitude,
-                nearby.features[nearby.features.length - 1]?.properties?.lat,
-                nearby.features[nearby.features.length - 1]?.properties?.lon
-              )}
-              pathOptions={{ color: "blue", fillColor: "blue" }}
-            />
-          )}
+          {searched &&
+            nearby?.features?.length > 0 && ( // Conditionally render the Circle component
+              <Circle
+                center={[
+                  (currentLocation.latitude +
+                    nearby.features[nearby.features.length - 1]?.properties
+                      ?.lat) /
+                    2,
+                  (currentLocation.longitude +
+                    nearby.features[nearby.features.length - 1]?.properties
+                      ?.lon) /
+                    2,
+                ]}
+                radius={calculateDistance(
+                  currentLocation.latitude,
+                  currentLocation.longitude,
+                  nearby.features[nearby.features.length - 1]?.properties?.lat,
+                  nearby.features[nearby.features.length - 1]?.properties?.lon
+                )}
+                pathOptions={{ color: "blue", fillColor: "blue" }}
+              />
+            )}
           {nearby?.features?.map((feature, index) =>
             feature.geometry && feature.geometry ? (
               <Marker
@@ -96,9 +112,9 @@ const PlacesNearby = () => {
                 icon={L.icon(iconDesign)}
               >
                 <Popup>
-                  {feature.properties && feature.properties.name
-                    ? feature.properties.name
-                    : "Place"}
+                  <Link to={`/nearbyPlaces/${feature?.properties?.place_id}`}>
+                    {feature?.properties?.name || "Place"}
+                  </Link>
                 </Popup>
               </Marker>
             ) : null

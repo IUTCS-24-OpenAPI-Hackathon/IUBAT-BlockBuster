@@ -32,48 +32,55 @@ const Register = () => {
   };
   return (
     <div>
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col">
-          <div className="text-center lg:text-left">
+      <div className="bg-base-200 min-h-screen">
+        <div className="hero py-16">
+          <div className="text-center  ">
             <h1 className="text-5xl font-bold my-5">Register now!</h1>
           </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mx-auto p-5 m-5 rounded">
             <form onSubmit={handleSubmit} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
-                </label>
+                </label>{" "}
+                <br />
                 <input
                   type="text"
                   name="name"
                   placeholder="name"
-                  className="input input-bordered"
+                  className="input border border-slate-500"
                   required
                 />
-              </div>
+              </div>{" "}
+              <br />
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
-                </label>
+                </label>{" "}
+                <br />
                 <input
                   type="email"
                   name="email"
                   placeholder="email"
-                  className="input input-bordered"
+                  className="input border border-slate-500"
                   required
                 />
-              </div>
+              </div>{" "}
+              <br />
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
+                <br />
                 <input
                   type="password"
                   name="password"
                   placeholder="password"
-                  className="input input-bordered"
+                  className="input border border-slate-500"
                   required
                 />
+                <br />
+                <br />
                 <label className="label">
                   <Link
                     to={"/login"}
@@ -83,14 +90,11 @@ const Register = () => {
                   </Link>
                 </label>
               </div>
-              <div className="form-control mt-6">
-                <button className="btn btn-primary">Register</button>
-              </div>
               <button
                 onClick={handleGoogleSignIn}
                 className="btn btn-outline btn-success"
               >
-                Google
+                Google Signup
               </button>
             </form>
           </div>

@@ -22,52 +22,57 @@ const Login = () => {
       })
       .catch((error) => console.error(error));
   };
+
   return (
-    <div>
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Login now!</h1>
-            <p className="py-6">Login with your email and password</p>
-          </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form onSubmit={handleSubmit} className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  defaultValue={`qiqyrezy@citmo.net`}
-                  name="email"
-                  placeholder="email"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="password"
-                  defaultValue={`Pa$$w0rd!`}
-                  name="password"
-                  placeholder="password"
-                  className="input input-bordered"
-                  required
-                />
-                <label className="label">
-                  <a href="/" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
-              </div>
-              <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
-              </div>
-            </form>
-          </div>
+    <div className="bg-base-200 min-h-screen">
+      <div className="hero py-16">
+        <div className="text-center  ">
+          <h1 className="text-5xl font-bold">Login now!</h1>
+          <p className="py-6">Login with your email and password</p>
+        </div>
+        <div className="card shadow-lg bg-base-100 max-w-sm w-full mx-auto p-5 border rounded">
+          <form onSubmit={handleSubmit} className="card-body  flex flex-col items-center">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <br />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                defaultValue={`qiqyrezy@citmo.net`}
+                className="input border border-slate-500"
+                required
+              />
+            </div>
+            <br />
+            <div className="form-contro">
+              <label className="label ">
+                <span className="label-text">Password</span>
+              </label>
+              <br />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                defaultValue={`Pa$$w0rd!`}
+                className="input border border-slate-600"
+                required
+              />
+              <br />
+           
+              <br />
+              <label className="label">
+                <a href="/register" className="label-text-alt link link-hover">
+                   Sign Up?
+                </a>
+              </label>
+            </div>
+            <div className="form-control mt-6">
+              <button className="btn  border border-blue-500 p-2 rounded">Login</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
