@@ -36,7 +36,7 @@ module.exports.getReviews = async (req, res) => {
 
   const oldReviews = await getReviews.json();
 
-  const reviews = await Review.findOne({ place_id: id });
+  const reviews = await Review.find({ place_id: id });
 
   return res.send({ reviews: reviews, oldReviews: oldReviews });
 };
@@ -46,6 +46,7 @@ module.exports.createReview = async (req, res) => {
   await review.save();
 
   return res.send({
+    status: true,
     message: "Review submitted for review",
   });
 };

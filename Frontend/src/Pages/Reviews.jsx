@@ -12,19 +12,35 @@ const Reviews = ({ id, lat, lon }) => {
         setRvs(data);
         setLoaded(true);
       })
-      .catch((error) => console.error("Error fetching JSON:", error));
+      .catch((error) => {
+        console.error("Error fetching JSON:", error);
+        setLoaded(true);
+      });
   }, [id, lat, lon]);
 
-  console.log(rvs);
-
   let content = null;
-  if (loaded && rvs.length > 0) {
-    content = rvs.map((r, k) => <p key={k}> </p>);
+  let content2 = null;
+  if (loaded) {
+    content = rvs.oldReviews.map((r, k) => (
+      <p key={k} className="italic">
+        {" "}
+        {r.text}{" "}
+      </p>
+    ));
+    content2 = rvs.reviews.map((r, k) => <p key={k}> {r.text} </p>);
   }
+
   return (
     <div>
       <h1 className="text-2xl my-4">Reviews</h1>
-      <div>{content}</div>
+      <div className="w-full bg-gray-100 text-start grid gap-2 p-4">
+        <h2 className="text-xl my-4 font-semibold">Reviews from the web</h2>
+        <div className="grid gap-2 ">{content}</div>
+        <h2 className="text-xl my-4 font-semibold">
+          Reviews from the Platform
+        </h2>
+        <div className="grid gap-2 ">{content2}</div>
+      </div>
     </div>
   );
 };

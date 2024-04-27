@@ -10,19 +10,24 @@ const NewReview = ({ id }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch(`http://localhost:4003/api/reviews/create`, {
+    let res = await fetch(`http://localhost:4003/api/reviews/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         rating: rating,
-        review: review,
+        text: review,
         place_id: id,
         firebase_id: user.uid,
         email: user.email,
       }),
     });
+    res = await res.json();
+    console.log(res);
+    if (res.status) {
+      location.reload();
+    }
   };
 
   return (
